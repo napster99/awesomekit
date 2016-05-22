@@ -1,0 +1,57 @@
+<style type="text/css">
+  .row [class*="col-"]{
+    padding-right : 7px;
+  }
+</style>
+<div class="padding">
+  
+  <div class="box">
+    <div class="m-a-0"></div>
+    <div class="box-body">
+      <form role="form">
+
+        <div class="form-group row">
+          <label class="col-sm-1 form-control-label">热门话题1</label>
+          <div class="col-sm-8" name="search" >
+              <ui-select multiple ng-model="topicsObj1.selected">
+                <ui-select-match placeholder="热门话题1">{{$item.topic}}</ui-select-match>
+                <ui-select-choices repeat="item in topics1">
+                  <div ng-bind-html="item.topic"></div>
+                </ui-select-choices>
+              </ui-select>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-1 form-control-label">热门话题2</label>
+          <div class="col-sm-8" name="search">
+            <ui-select multiple ng-model="topicsObj2.selected">
+              <ui-select-match placeholder="热门话题2">{{$item.topic}}</ui-select-match>
+              <ui-select-choices repeat="item in topics2">
+                <div ng-bind-html="item.topic"></div>
+              </ui-select-choices>
+            </ui-select>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-1 form-control-label">热门话题3</label>
+          <div class="col-sm-8" name="search">
+            <ui-select multiple ng-model="topicsObj3.selected">
+              <ui-select-match placeholder="热门话题3">{{$item.topic}}</ui-select-match>
+              <ui-select-choices repeat="item in topics3">
+                <div ng-bind-html="item.topic"></div>
+              </ui-select-choices>
+            </ui-select>
+          </div>
+        </div>
+
+        <div class="form-group row m-t-md">
+          <div class="col-sm-offset-1 col-sm-1">
+            <button type="submit" class="btn info" ng-click="saveIt()">保存</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

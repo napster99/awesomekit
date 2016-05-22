@@ -1,0 +1,272 @@
+
+<link rel="stylesheet" href="../angular/apps/mylibs/zTreeStyle/zTreeStyle.css" type="text/css">
+
+<div class="padding">
+	<div class="box nav-active-border b-info" style="margin-bottom:0;">
+	  <ul class="nav nav-md">
+	    <li class="nav-item inline">
+	      <a class="nav-link active" href data-toggle="tab" data-target="#tab_1">
+	        <span class="text-md">角色管理</span>
+	      </a>
+	    </li>
+	    <li class="nav-item inline">
+	      <a class="nav-link" href data-toggle="tab" data-target="#tab_2">
+	        <span class="text-md">用户管理</span>
+	      </a>
+	    </li>
+	  </ul>
+	</div>
+
+
+
+	<div class="tab-content clear">
+		<div class="tab-pane active" id="tab_1" ng-controller="RoleCtrl">
+			<div class="box">
+        <div class="box-divider m-a-0"></div>
+
+        <div class="box-header">
+          <button class="btn btn-sm accent" data-toggle="modal" data-target="#roleModal" ui-toggle-class="zoom" ui-target="#animate" ng-click="addRole()">添加角色</button>
+        </div>
+        
+
+        <div class="padding">
+            
+            <table class="table table-hover">
+              <tbody>
+                <tr align="censter" style="font-weight: bold">
+                  <td style="width:15%">ID</td>
+                  <td style="width:20%">角色名</td>
+                  <td style="width:40%">描述</td>
+                  <td style="width:25%">操作</td>
+                </tr>
+                <tr ng-repeat="item in datas">
+                  <td>{{item.id}}</td>
+                  <td>{{item.name}}</td>
+                  <td>{{item.desc}}</td>
+                  <td>
+                    <div class="buttons" style="">
+                      <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#roleModal" ng-click="getUserInfo(item.id)">修改</button>
+                      <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delRoleModal" ng-click="setCurId(item.id)">删除</button>
+                    </div>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+        </div>
+      </div>
+
+      <div id="delRoleModal" class="modal" data-backdrop="true">
+		  <div class="row-col h-v">
+		    <div class="row-cell v-m">
+		      <div class="modal-dialog modal-sm">
+		        <div class="modal-content">
+		          <div class="modal-header">
+		            <h5 class="modal-title">提示框</h5>
+		          </div>
+		          <div class="modal-body text-center p-lg">
+		            <p>是否确认删除?</p>
+		          </div>
+		          <div class="modal-footer">
+		            <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
+		            <button type="button" class="btn danger p-x-md" data-dismiss="modal" ng-click="removeRole()">确定</button>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+			
+			<!-- 角色 -->
+			<div id="roleModal" class="modal fade animate" data-backdrop="true">
+			  <div class="modal-dialog" id="animate">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title">{{roleTitle}}</h5>
+			      </div>
+			      <div class="modal-body text-center p-lg">
+			        <form role="form">
+			            <div class="form-group row">
+			              <label for="picTitle" class="col-sm-2 form-control-label">角色名</label>
+			              <div class="col-sm-8">
+			                <input type="text" class="form-control form-control2" id="picTitle" placeholder="角色名" ng-model="roleName">
+			              </div>
+			            </div>
+
+			            <div class="form-group row">
+			              <label for="picTitle" class="col-sm-2 form-control-label">描述</label>
+			              <div class="col-sm-8">
+			                <input type="text" class="form-control form-control2" id="picTitle" placeholder="描述" ng-model="roleDesc">
+			              </div>
+			            </div>
+
+			            <div class="form-group row">
+			              <label for="picTitle" class="col-sm-2 form-control-label">权限</label>
+			              <div class="col-sm-8">
+			                	<ul id="treeDemo" class="ztree"></ul>
+			              </div>
+			            </div>
+
+			          </form>
+
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
+			        <button type="button" class="btn danger p-x-md" data-dismiss="modal" ng-click="saveRole()">保存</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<!-- / 角色 -->
+
+
+		</div>
+
+
+
+		<div class="tab-pane" id="tab_2" ng-controller="UserCtrl">
+			<div class="box">
+        <div class="box-divider m-a-0"></div>
+
+        <div class="box-header">
+          <div class="form-group">
+	          <label class="col-sm-1 form-control-label text-right">用户名</label>
+	          <div class="col-sm-2">
+	            <input type="text" class="form-control" placeholder="用户名" ng-model="searchKey">
+	          </div>
+
+	          <div class="col-sm-2">
+	            <button class="btn btn-sm info" ng-click="searchIt()">搜索</button>
+	          </div>
+
+	          <button class="btn btn-sm accent" data-toggle="modal" data-target="#userModal" ui-toggle-class="zoom" ui-target="#animate" ng-click="addUser()">添加用户</button>
+
+	        </div>
+        </div>
+        
+
+        <div class="padding">
+            
+            <table class="table table-hover">
+              <tbody>
+                <tr align="censter" style="font-weight: bold">
+                  <td style="width:10%">姓名</td>
+                  <td style="width:10%">电话</td>
+                  <td style="width:15%">角色</td>
+                  <td style="width:10%">账号状态</td>
+                  <td style="width:15%">上次登录</td>
+                  <td style="width:15%">创建时间</td>
+                  <td style="width:25%">操作</td>
+                </tr>
+                <tr ng-repeat="item in datas">
+                  <td>{{item.name}}</td>
+                  <td>{{item.phone}}</td>
+                  <td>{{item.role}}</td>
+                  <td>{{item.status == 'ACTIVE' ? '正常' : '已禁止'}}</td>
+                  <td>{{item.last_login}}</td>
+                  <td>{{item.ctime}}</td>
+                  <td>
+                    <div class="buttons" style="">
+                      <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#userModal" ng-click="getUserInfo(item.id)">修改</button>
+                      <button class="btn btn-sm btn-warning" ng-click="disUser(item.id, item.status)">{{item.status === 'ACTIVE' ? '禁用' : '开启'}}</button>
+                      <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delModal" ng-click="setCurId(item.id)">删除</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+			<div pagination></div>
+
+
+        </div>
+      </div>
+
+
+			<div id="delModal" class="modal" data-backdrop="true">
+			  <div class="row-col h-v">
+			    <div class="row-cell v-m">
+			      <div class="modal-dialog modal-sm">
+			        <div class="modal-content">
+			          <div class="modal-header">
+			            <h5 class="modal-title">提示框</h5>
+			          </div>
+			          <div class="modal-body text-center p-lg">
+			            <p>是否确认删除?</p>
+			          </div>
+			          <div class="modal-footer">
+			            <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
+			            <button type="button" class="btn danger p-x-md" data-dismiss="modal" ng-click="removeUser()">确定</button>
+			          </div>
+			        </div><!-- /.modal-content -->
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+
+
+
+			<!-- 用户 -->
+			<div id="userModal" class="modal fade animate" data-backdrop="true">
+			  <div class="modal-dialog" id="animate">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title">{{userTitle}}</h5>
+			      </div>
+			      <div class="modal-body text-center p-lg">
+			        <form role="form">
+		            <div class="form-group row">
+		              <label for="userName" class="col-sm-2 form-control-label">姓名</label>
+		              <div class="col-sm-8">
+		                <input type="text" class="form-control form-control2" id="userName" placeholder="姓名" ng-model="userName">
+		              </div>
+		            </div>
+		            <div class="form-group row">
+		              <label for="userPhone" class="col-sm-2 form-control-label">电话</label>
+		              <div class="col-sm-8">
+		                <input type="text" class="form-control form-control2" id="userPhone" placeholder="电话" ng-model="userPhone">
+		              </div>
+		            </div>
+		            <div class="form-group row">
+		              <label for="userRole" class="col-sm-2 form-control-label">角色</label>
+		              <div class="col-sm-8">
+		              <!--   <input type="text" class="form-control form-control2" id="userRole" placeholder="角色" ng-model="userRole"> -->
+
+		                <ui-select ng-model="userRole.selected">
+	                        <ui-select-match placeholder="请选择一个角色">{{$select.selected.name}}</ui-select-match>
+	                        <ui-select-choices repeat="item in rolesArr | filter: $select.search">
+	                          <div ng-bind-html="item.name | highlight: $select.search"></div>
+	                        </ui-select-choices>
+	                      </ui-select>
+
+
+		              </div>
+		            </div>
+		          </form>
+		          
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
+			        <button type="button" class="btn danger p-x-md" data-dismiss="modal" ng-click="saveUser()">保存</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<!-- / 用户 -->
+
+
+
+		</div>
+
+
+	</div>
+
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,248 @@
+<style type="text/css">
+  .form-control{
+    width: auto;
+  }
+
+  .form-control2{
+    width: 100%;
+  }
+
+  .ml10{
+    margin-left: 10px;
+  }
+  .div.dataTables_paginate{
+    text-align: right;
+    background: red;
+  }
+</style>
+<div class="padding" ng-show="parentPageShow">
+
+    <div class="box">
+        <div class="m-a-0"></div>
+        <div class="box-header">
+          <div class="form-group">
+            <label class="col-sm-1 form-control-label">名称</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-minlength ng-touched col-sm-4" placeholder="名称">
+              <button class="btn btn-sm info ml10" ng-click="rowform.$show()">搜索</button>
+            </div>
+
+            <div class="pull-right">
+              <button class="btn btn-sm accent" data-toggle="modal" data-target="#m" ui-toggle-class="zoom" ui-target="#animate">新增</button>
+            </div>
+
+          </div>
+        </div>
+        
+        <div class="padding">
+            
+            <table class="table table-hover">
+              <tbody>
+                <tr align="censter" style="font-weight: bold">
+                  <td style="width:20%">群组名称</td>
+                  <td style="width:20%">群组描述</td>
+                  <td style="width:15%">参数</td>
+                  <td style="width:20%">最后修改日期</td>
+                  <td style="width:30%">操作</td>
+                </tr>
+                <tr ng-repeat="item in datas">
+                  <td>{{item.groupName}}</td>
+                  <td>{{item.groupDesc}}</td>
+                  <td>{{item.args}}</td>
+                  <td>{{item.time}}</td>
+                  <td>
+                    <div class="buttons" ng-show="!rowform.$visible" style="">
+                      <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#m-sm">删除</button>
+                      <button class="btn btn-sm btn-success" ng-click="seeDetail(item.id)">查看</button>
+                      <button class="btn btn-sm btn-info" ng-click="rowform.$show()">编辑</button>
+                    </div>
+                  </td>
+                </tr>
+                
+              </tbody>
+            </table>
+xx
+            <div pagination></div>asdf
+            
+
+
+        </div>
+      </div>
+  </div>
+
+
+<div class="padding" ng-show="childPageShow" ng-controller="UserCtrl2">
+
+  <div class="box">
+        <div class="box-header" ng-click="_toggleShow()">
+          <button class="btn btn-fw white"><i class="fa fa-angle-left"></i>&nbsp;&nbsp;返回</button>
+        </div>
+        <div class="m-a-0"></div>
+        <div class="box-header">
+          <div class="form-group">
+            <label class="col-sm-1 form-control-label">昵称/UID</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-minlength ng-touched col-sm-4" placeholder="名称">
+              <button class="btn btn-sm info ml10" ng-click="rowform.$show()">搜索</button>
+            </div>
+            <div class="pull-right">
+              <button class="btn btn-sm accent" data-toggle="modal" data-target="#userAdd" ui-toggle-class="zoom" ui-target="#animate">新增</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="padding">
+            
+            <table class="table table-hover">
+              <tbody>
+                <tr align="censter" style="font-weight: bold">
+                  <td style="width:20%">UID</td>
+                  <td style="width:20%">昵称</td>
+                  <td style="width:15%">群组名称</td>
+                  <td style="width:20%">权重</td>
+                  <td style="width:30%">操作</td>
+                </tr>
+                <tr>
+                  <td>asfdasfd</td>
+                  <td>asfdasfd</td>
+                  <td>asfdasfd</td>
+                  <td>asfdasfd</td>
+                  <td>
+                    <div class="buttons" ng-show="!rowform.$visible" style="">
+                      <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#m-sm">删除</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>asfdasfd</td>
+                  <td>asfdasfd</td>
+                  <td>asfdasfd</td>
+                  <td>asfdasfd</td>
+                  <td>
+                    <div class="buttons" ng-show="!rowform.$visible" style="">
+                      <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#m-sm">删除</button>
+                    </div>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+        </div>
+      </div>
+
+      <div pagination></div>
+</div>
+
+
+
+<!-- .modal -->
+<div id="userAdd" class="modal fade animate" data-backdrop="true">
+  <div class="modal-dialog" id="animate">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">新增用户</h5>
+      </div>
+      <div class="modal-body text-center p-lg">
+        <form role="form">
+            <div class="form-group row">
+              <label for="picTitle" class="col-sm-2 form-control-label">UID</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control2" id="picTitle" placeholder="UID">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="picTitle" class="col-sm-2 form-control-label">昵称</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control2" id="picTitle" placeholder="昵称">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="picTitle" class="col-sm-2 form-control-label">权重</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control2" id="picTitle" placeholder="权重">
+              </div>
+            </div>
+
+          </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
+        <button type="button" class="btn danger p-x-md" data-dismiss="modal">保存</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div>
+</div>
+<!-- / .modal -->
+
+
+<!-- .modal -->
+<div id="m" class="modal fade animate" data-backdrop="true">
+  <div class="modal-dialog" id="animate">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">新增群组</h5>
+      </div>
+      <div class="modal-body text-center p-lg">
+        <form role="form">
+            <div class="form-group row">
+              <label for="picTitle" class="col-sm-2 form-control-label">群组名称</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control2" id="picTitle" placeholder="群组名称">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="picTitle" class="col-sm-2 form-control-label">群组描述</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control2" id="picTitle" placeholder="群组描述">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="picTitle" class="col-sm-2 form-control-label">参数</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control2" id="picTitle" placeholder="参数">
+              </div>
+            </div>
+
+          </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
+        <button type="button" class="btn danger p-x-md" data-dismiss="modal">保存</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div>
+</div>
+<!-- / .modal -->
+
+
+
+
+<!-- small modal -->
+<div id="m-sm" class="modal" data-backdrop="true">
+  <div class="row-col h-v">
+    <div class="row-cell v-m">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">提示框</h5>
+          </div>
+          <div class="modal-body text-center p-lg">
+            <p>是否确认删除?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
+            <button type="button" class="btn danger p-x-md" data-dismiss="modal">确定</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- / .modal -->
+

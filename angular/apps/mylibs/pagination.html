@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-sm-7 col-sm-offset-5">
+    <ul class="pagination">
+      <li><a href="javascript:;" ng-click="firstPage()">首页</a></li>
+      <li><a href="javascript:;" ng-click="prevClick()">上一页</a></li>
+      <li class="paginate_button" ng-hide="prevMoreHide"><a href="javascript:;" ng-click="prevMoreClick()">...</a></li>
+
+
+      <li class="paginate_button" ng-class="{active : whichIndex == $index + 1}" ng-repeat="item in pageBoxArray"><a href="javascript:;" ng-click="showPage(item)">{{item}}</a></li>
+      <li class="paginate_button" ng-hide="nextMoreHide"><a href="javascript:;" ng-click="nextMoreClick()">...</a></li>
+      <li class="paginate_button"><a href="javascript:;" ng-click="nextClick()">下一页</a></li>
+      <li class="paginate_button"><a href="javascript:;" ng-click="lastPage()">末页</a></li>
+    </ul>
+  </div>
+</div>

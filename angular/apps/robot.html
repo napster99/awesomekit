@@ -1,0 +1,96 @@
+<div class="padding">
+    <div class="tab-pane active" id="tab_2">
+        <div class="box">
+            <div class="padding">
+                <table class="table table-hover">
+                    <tbody>
+                        <tr align="censter" style="font-weight: bold">
+                            <td style="width:15%">登录用户名</td>
+                            <td style="width:15%">登录密码</td>
+                            <td style="width:25%">直播房间ID</td>
+                            <td style="width:20%">出场次数</td>
+                            <td style="width:30%">操作</td>
+                        </tr>
+                        <tr ng-repeat="item in datas">
+                            <td>{{item.account}}</td>
+                            <td>{{item.password}}</td>
+                            <td>{{item.roomid}}</td>
+                            <td>{{item.count}}</td>
+                            <td>
+                                <div class="buttons" style="">
+                                    <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#roleModal" ng-click="getAdInfo(item.id)">修改</button>
+                                    <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delRoleModal" ng-click="setCurId(item.id)">删除</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div pagination></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="delRoleModal" class="modal" data-backdrop="true">
+    <div class="row-col h-v">
+        <div class="row-cell v-m">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">提示框</h5>
+                    </div>
+                    <div class="modal-body text-center p-lg">
+                        <p>是否确认删除?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn danger p-x-md" data-dismiss="modal" ng-click="removeAd()">确定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="roleModal" class="modal fade animate" data-backdrop="true">
+    <div class="modal-dialog" id="animate">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">修改机器人</h5>
+            </div>
+            <div class="modal-body p-lg">
+                <form role="form">
+                    <div class="form-group row">
+                        <label for="picTitle_m" class="col-sm-2 form-control-label">登录用户名</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control form-control2" id="picTitle_m" placeholder="登录用户名" ng-model="adTitle_m">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="password" class="col-sm-2 form-control-label">登录密码</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control form-control2" id="password" placeholder="登录密码" ng-model="adTitle_m">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="password" class="col-sm-2 form-control-label">直播房间ID</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control form-control2" id="password" placeholder="直播房间ID" ng-model="adTitle_m">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="status" class="col-sm-2 form-control-label">状态</label>
+                        <div class="col-sm-8">
+                            <label class="ui-switch ui-switch-md info m-t-xs">
+                                <input type="checkbox" ng-checked="status" ng-model="status">
+                                <i></i>
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
+                <button type="button" class="btn danger p-x-md" data-dismiss="modal" ng-click="modiAd()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>

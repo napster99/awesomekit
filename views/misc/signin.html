@@ -1,0 +1,21 @@
+<div class="center-block w-xxl w-auto-xs p-y-md">
+  <div class="navbar">
+    <div class="pull-center">
+      <div ui-include="'../views/blocks/navbar.brand.html'"></div>
+    </div>
+  </div>
+  <div class="p-a-md box-color r box-shadow-z1 text-color m-a">
+    <form name="form">
+      <div class="md-form-group">
+        <input type="number" class="md-input" ng-model="mobile" required>
+        <label>账号</label>
+      </div>
+      <div class="md-form-group float-label">
+        <input type="number" class="md-input" ng-model="qrcode" required>
+        <label>验证码</label>
+      </div>
+      <button type="submit" ng-click="sendQR()" ng-disabled="button_clicked" class="btn primary btn-block p-x-md">{{text}}</button>
+      <button type="submit" ng-click="login()"  class="btn primary btn-block p-x-md">登录</button>
+    </form>
+  </div>
+</div>

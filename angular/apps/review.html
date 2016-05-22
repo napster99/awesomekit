@@ -1,0 +1,177 @@
+
+
+<style type="text/css">
+/*  .checkbox+.checkbox, .radio+.radio{
+    margin-top: 0;
+  }*/
+  .checkbox{
+    margin-top: 7px !important;
+  }
+</style>
+<div class="padding">
+
+    <div class="tab-content clear">
+            <div class="box">
+              <div class="padding">
+                  <div class="col-sm-12">
+
+                    <div class="row row-sm">
+                      <div class="col-xs-3">
+                        <input type="text" class="form-control" placeholder="昵称" ng-model="s_nickname">
+                      </div>
+                      <div class="col-xs-3">
+                        <input type="text" class="form-control" placeholder="掌秀号" ng-model="s_id">
+                      </div>
+                      <div class="col-xs-2">
+                        <input type="text" class="form-control" placeholder="真实姓名" ng-model="s_realname">
+                      </div>
+                      <div class="col-xs-2">
+                        <ui-select ng-model="s_operationObj.selected">
+                          <ui-select-match placeholder="请选择">{{$select.selected.name}}</ui-select-match>
+                          <ui-select-choices repeat="item in operation | filter: $select.search">
+                            <div ng-bind-html="item.name | highlight: $select.search"></div>
+                          </ui-select-choices>
+                        </ui-select>
+                      </div>
+                      <button class=" btn info" ng-click="searchIt()">搜索</button>
+                      <button class=" btn white" ng-click="resetIt()">清空</button>
+                    </div>
+                  </div>
+                  <table class="table table-hover" style="margin-top:45px;">
+                    <tbody>
+                      <tr align="censter" style="font-weight: bold">
+                        <td style="width:10%">掌秀号</td>
+                        <td style="width:15%">用户昵称</td>
+                        <td style="width:15%">真实姓名</td>
+                        <td style="width:15%">申请类型</td>
+                        <td style="width:15%">状态</td>
+                        <td style="width:20%">申请时间</td>
+                        <td style="width:20%">操作</td>
+                      </tr>
+                      <tr ng-repeat="item in datas">
+                        <td>{{item.id}}</td>
+                        <td>{{item.nickname}}</td>
+                        <td>{{item.real_name}}</td>
+                        <td>{{objType[item.organization_type]}}</td>
+                        <td>{{item.status == 1 ? '开启' : '关闭'}}</td>
+                        <td>{{item.application_time}}</td>
+                        <td>
+                          <div class="buttons" style="">
+                            <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#roleModal" ng-click="getAdInfo(item.id)">修改</button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div pagination></div>
+              </div>
+            </div>
+
+    </div>
+
+</div>
+
+
+
+  <div id="roleModal" class="modal fade animate" data-backdrop="true">
+      <div class="modal-dialog" id="animate">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">操作</h5>
+          </div>
+          <div class="modal-body p-lg">
+            <form role="form">
+              <div class="form-group row">
+                <label class="col-sm-2 form-control-label">真实姓名</label>
+                <div class="col-sm-8">
+                  <label class="col-sm-5 form-control-label">{{realName}}</label>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 form-control-label">手机号码</label>
+                <div class="col-sm-8">
+                  <label class="col-sm-5 form-control-label">{{mobile}}</label>
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label class="col-sm-2 form-control-label">身份证号码</label>
+                <div class="col-sm-8">
+                  <label class="col-sm-5 form-control-label">{{id_number}}</label>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 form-control-label">身份证照片</label>
+                <div class="col-sm-8">
+                  <div class="m-r m-b p-a-xs b-a">
+                    <img ng-src="{{photoes1}}" class="w-full">
+                  </div>
+                  <div class="m-r m-b p-a-xs b-a">
+                    <img ng-src="{{photoes2}}" class="w-full">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="reviewDesc" class="col-sm-2 form-control-label">认证描述</label>
+                <div class="col-sm-8">
+                  <textarea type="text" class="form-control" id="reviewDesc" ng-model="reviewDesc" placeholder="认证描述"></textarea>
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label class="col-sm-2 form-control-label">作品链接</label>
+                <div class="col-sm-8">
+                  <label class="col-sm-5 form-control-label">
+                    <a title="点击查看作品" ng-href="{{sample_links}}" target="_blank">{{sample_links}}</a>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 form-control-label">操作</label>
+                <div class="col-sm-8">
+                  <ui-select ng-model="operationObj.selected">
+                    <ui-select-match placeholder="请选择">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="item in operation | filter: $select.search">
+                      <div ng-bind-html="item.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select>
+                </div>
+              </div>
+
+              <div class="form-group row" ng-if="(operationObj.selected['id'] == 2 || operationObj.selected['id'] == 3) ? true : false">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <textarea class="form-control" placeholder="不通过理由" id="reason"></textarea>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 form-control-label">认证类型</label>
+                <div class="col-sm-8">
+                  <ui-select ng-model="typesObj.selected">
+                    <ui-select-match placeholder="请选择">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="item in types | filter: $select.search">
+                      <div ng-bind-html="item.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select>
+                </div>
+              </div>
+
+              
+
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
+            <button type="button" class="btn danger p-x-md" data-dismiss="modal" ng-click="modiAd()">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+

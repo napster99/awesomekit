@@ -1,0 +1,350 @@
+
+  <ul class="nav" ui-nav ng-repeat="(key, value) in datas">
+      
+    <li class="nav-header hidden-folded">
+      <small class="text-muted">{{key}}</small>
+    </li>
+
+    <li ng-repeat="(key, invalue) in value">
+      <a href="javascript:;" ui-sref="{{invalue.ui_sref}}" ng-if="!invalue.child">
+        <span class="nav-icon">
+          <i class="fa {{invalue.icon}}" ></i>
+        </span>
+        <span class="nav-text">{{invalue.name}}</span>
+      </a>
+
+
+      <a ng-if="invalue.child">
+        <span class="nav-caret">
+          <i class="fa fa-caret-down"></i>
+        </span>
+        <span class="nav-label"><b class="label label-sm warning">2</b></span>
+        <span class="nav-icon">
+          <i class="fa {{invalue.icon}}"></i>
+        </span>
+        <span class="nav-text">{{invalue.name}}</span>
+      </a>
+      <ul class="nav-sub nav-mega nav-mega-3" ng-if="invalue.child">
+        <li ng-repeat="childItem in invalue.child">
+          <a ui-sref="{{childItem.ui_sref}}"><span class="nav-text">{{childItem.name}}</span></a>
+        </li>
+      </ul>
+
+
+    </li>
+
+
+
+    
+
+   <!--  <li class="nav-header hidden-folded">
+      <small class="text-muted">运营相关</small>
+    </li>
+    
+    <li>
+      <a href="authority.html" ui-sref="app.authority">
+        <span class="nav-icon">
+          <i class="fa fa-users"></i>
+        </span>
+        <span class="nav-text">用户权限管理</span>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:;" ui-sref="app.dashboard">
+        <span class="nav-icon">
+          <i class="fa fa-retweet"></i>
+        </span>
+        <span class="nav-text">认证审核</span>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:;" ui-sref="app.dashboard">
+        <span class="nav-icon">
+          <i class="fa fa-warning"></i>
+        </span>
+        <span class="nav-text">举报信息管理</span>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:;" ui-sref="app.carouselFigure">
+        <span class="nav-icon">
+          <i class="fa fa-photo"></i>
+        </span>
+        <span class="nav-text">轮播图配置</span>
+      </a>
+    </li>
+    <li>
+      <a href="advLogo.html" ui-sref="app.advLogo">
+        <span class="nav-icon">
+          <i class="fa  fa-file-image-o"></i>
+        </span>
+        <span class="nav-text">广告图配置</span>
+      </a>
+    </li>
+
+     <li ng-class="{active:$state.includes('app.ui')}">
+      <a>
+        <span class="nav-caret">
+          <i class="fa fa-caret-down"></i>
+        </span>
+        <span class="nav-label"><b class="label label-sm warning">2</b></span>
+        <span class="nav-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <span class="nav-text">搜索配置</span>
+      </a>
+      <ul class="nav-sub nav-mega nav-mega-3">
+        <li ui-sref-active="active"  class="hide" ng-class="{'show': 1}">
+          <a ui-sref="app.topicConfig"><span class="nav-text">话题设置</span></a>
+        </li>
+        <li ui-sref-active="active" class="hide" ng-class="{'show': 1}">
+          <a ui-sref="app.userGroup"><span class="nav-text">用户群组设置</span></a>
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="javascript:;" ui-sref="app.dashboard">
+        <span class="nav-icon">
+          <i class="fa  fa-send"></i>
+        </span>
+        <span class="nav-text">官方推送</span>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:;" ui-sref="app.dashboard">
+        <span class="nav-icon">
+          <i class="fa  fa-send-o"></i>
+        </span>
+        <span class="nav-text">官方私信推送</span>
+      </a>
+    </li>
+    <li>
+      <a href="sensitiveWords.html" ui-sref="app.sensitive">
+        <span class="nav-icon">
+          <i class="fa  fa-list-alt"></i>
+        </span>
+        <span class="nav-text">敏感词库管理</span>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:;" ui-sref="app.dashboard">
+        <span class="nav-icon">
+          <i class="fa  fa-fire"></i>
+        </span>
+        <span class="nav-text">热门话题管理</span>
+      </a>
+    </li>
+    <li>
+      <a href="loginRecord.html" ui-sref="app.loginRecord">
+        <span class="nav-icon">
+          <i class="fa fa-eraser"></i>
+        </span>
+        <span class="nav-text">后台操作日志记录</span>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:;" ui-sref="app.dashboard">
+        <span class="nav-icon">
+          <i class="fa  fa-play"></i>
+        </span>
+        <span class="nav-text">直播回放管理</span>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:;" ui-sref="app.dashboard">
+        <span class="nav-icon">
+          <i class="fa fa-refresh"></i>
+        </span>
+        <span class="nav-text">更新功能</span>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:;" ui-sref="app.dashboard">
+        <span class="nav-icon">
+          <i class="fa fa-download"></i>
+        </span>
+        <span class="nav-text">下载页面配置</span>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:;" ui-sref="app.dashboard">
+        <span class="nav-icon">
+          <i class="fa fa-user"></i>
+        </span>
+        <span class="nav-text">签约管理功能</span>
+      </a>
+    </li>
+
+
+    <li class="nav-header hidden-folded">
+      <small class="text-muted">统计相关</small>
+    </li>
+
+    <li ng-class="{active:$state.includes('app.ui')}">
+      <a>
+        <span class="nav-caret">
+          <i class="fa fa-caret-down"></i>
+        </span>
+        <span class="nav-label"><b class="label label-sm {{app.setting.theme.accent}}">3</b></span>
+        <span class="nav-icon">
+          <i class="fa fa-money"></i>
+        </span>
+        <span class="nav-text">财富统计</span>
+      </a>
+      <ul class="nav-sub nav-mega nav-mega-3">
+        <li ui-sref-active="active"  class="hide" ng-class="{'show': 1}">
+          <a ui-sref="app.ui.angularstrap"><span class="nav-text">礼物相关</span></a>
+        </li>
+        <li ui-sref-active="active" class="hide" ng-class="{'show': 1}">
+          <a ui-sref="app.ui.bootstrap"><span class="nav-text">充值相关</span></a>
+        </li>
+        <li ui-sref-active="active">
+          <a href="arrow.html" ui-sref="app.ui.arrow"><span class="nav-text">财富日报</span></a>
+        </li>
+      </ul>
+    </li>
+
+    <li ng-class="{active:$state.includes('app.page')}">
+      <a>
+        <span class="nav-caret">
+          <i class="fa fa-caret-down"></i>
+        </span>
+        <span class="nav-label hidden-folded">
+          <b class="label label-sm info">4</b>
+        </span>
+        <span class="nav-icon">
+          <i class="fa fa-users"></i>
+        </span>
+        <span class="nav-text">人数统计</span>
+      </a>
+      <ul class="nav-sub nav-mega">
+        <li ui-sref-active="active">
+          <a href="profile.html" ui-sref="app.page.profile">
+            <span class="nav-text">实时统计</span>
+          </a>
+        </li>
+        <li ui-sref-active="active">
+          <a href="setting.html" ui-sref="app.page.setting">
+            <span class="nav-text">历史统计</span>
+          </a>
+        </li>
+        <li ui-sref-active="active">
+          <a href="search.html" ui-sref="app.page.search">
+            <span class="nav-text">按端统计</span>
+          </a>
+        </li>
+        <li ui-sref-active="active">
+          <a href="faq.html" ui-sref="app.page.faq">
+            <span class="nav-text">按版本统计</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li ng-class="{active:$state.includes('app.table')}">
+      <a>
+        <span class="nav-icon">
+          <i class="fa fa-line-chart"></i>
+        </span>
+        <span class="nav-text">等级分析</span>
+      </a>
+    </li>
+    <li ui-sref-active="active">
+      <a>
+        <span class="nav-caret">
+          <i class="fa fa-caret-down"></i>
+        </span>
+        <span class="nav-label hidden-folded"><b class="label label-sm primary">5</b></span>
+        <span class="nav-icon">
+          <i class="fa fa-rss"></i>
+        </span>
+        <span class="nav-text">竞品分析</span>
+      </a>
+      <ul class="nav-sub">
+        <li ui-sref-active="active">
+          <a href="chart.html" ui-sref="app.chart"><span class="nav-text">开播数</span></a>
+        </li>
+        <li ui-sref-active="active">
+          <a>
+            <span class="nav-text">实时开播数</span>
+          </a>
+        </li>
+        <li ui-sref-active="active">
+          <a>
+            <span class="nav-text">收益情况</span>
+          </a>
+        </li>
+        <li ui-sref-active="active">
+          <a>
+            <span class="nav-text">实时人数</span>
+          </a>
+        </li>
+        <li ui-sref-active="active">
+          <a>
+            <span class="nav-text">app下载量</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li ui-sref-active="active">
+      <a>
+        <span class="nav-caret">
+          <i class="fa fa-caret-down"></i>
+        </span>
+        <span class="nav-label hidden-folded"><b class="label label-sm success">3</b></span>
+        <span class="nav-icon">
+          <i class="fa fa-sliders"></i>
+        </span>
+        <span class="nav-text">活跃分析</span>
+      </a>
+      <ul class="nav-sub">
+        <li ui-sref-active="active">
+          <a href="chart.html" ui-sref="app.chart">
+            <span class="nav-text">弹幕情况</span>
+          </a>
+        </li>
+        <li ui-sref-active="active">
+          <a>
+            <span class="nav-text">用户留存</span>
+          </a>
+        </li>
+        <li ui-sref-active="active">
+          <a>
+            <span class="nav-text">用户消费周期</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li ng-class="{active:$state.includes('app.table')}">
+      <a>
+        <span class="nav-icon">
+          <i class="fa  fa-search"></i>
+        </span>
+        <span class="nav-text">热门搜索统计</span>
+      </a>
+    </li>
+
+    <li ng-class="{active:$state.includes('app.table')}">
+      <a>
+        <span class="nav-icon">
+          <i class="fa fa-sort-amount-asc"></i>
+        </span>
+        <span class="nav-text">活动数据统计</span>
+      </a>
+    </li>
+
+    <li ng-class="{active:$state.includes('app.table')}">
+      <a>
+        <span class="nav-icon">
+          <i class="fa fa-history"></i>
+        </span>
+        <span class="nav-text">直播时长统计</span>
+      </a>
+    </li> -->
+
+
+  </ul>
+
